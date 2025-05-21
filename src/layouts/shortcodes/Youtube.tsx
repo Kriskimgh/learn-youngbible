@@ -1,23 +1,26 @@
 import React from "react";
-import { LiteYouTubeEmbed } from "react-lite-youtube-embed"; // ✅ 수정
-import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
 const Youtube = ({
   id,
-  title,
+  title = "YouTube Video",
   ...rest
 }: {
   id: string;
-  title: string;
+  title?: string;
   [key: string]: any;
 }) => {
   return (
-    <LiteYouTubeEmbed
-      wrapperClass="yt-lite rounded-lg"
-      id={id}
-      title={title}
-      {...rest}
-    />
+    <div className="relative w-full pt-[56.25%] rounded-lg overflow-hidden">
+      <iframe
+        className="absolute top-0 left-0 w-full h-full"
+        src={`https://www.youtube.com/embed/${id}`}
+        title={title}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        {...rest}
+      />
+    </div>
   );
 };
 
